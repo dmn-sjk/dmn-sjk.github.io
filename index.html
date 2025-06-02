@@ -2,78 +2,419 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="icon" type="image/svg+xml" href="assets/moth.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Website</title>
+    <title>Damian Sójka - Personal Website</title>
     <style>
+        :root {
+            --primary: #2d3a4b;
+            --secondary: #4f6d7a;
+            --accent: #f9aa33;
+            --bg: #f4f7fa;
+            --white: #fff;
+            --text: #222;
+            --muted: #6c7a89;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
         }
         header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
+            background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 40px 0 20px 0;
             text-align: center;
+            box-shadow: 0 2px 8px rgba(45,58,75,0.08);
+        }
+        header h1 {
+            font-size: 2.7em;
+            margin-bottom: 0.2em;
+            letter-spacing: 2px;
+        }
+        header p {
+            font-size: 1.2em;
+            color: #e0e0e0;
+            margin-top: 0;
         }
         nav {
             display: flex;
             justify-content: center;
-            background: #444;
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(45,58,75,0.04);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         nav a {
-            color: #fff;
-            padding: 10px;
+            color: var(--primary);
+            padding: 16px 22px;
             text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05em;
+            transition: background 0.2s, color 0.2s;
+            border-bottom: 2px solid transparent;
         }
-        nav a:hover {
-            background: #555;
+        nav a:hover, nav a:focus {
+            background: var(--bg);
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
         }
         main {
-            padding: 20px;
+            padding: 32px 16px 16px 16px;
+            max-width: 900px;
+            margin: 0 auto;
         }
-        footer {
-            background: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
+        section {
+            background: var(--white);
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(45,58,75,0.06);
+            margin-bottom: 36px;
+            padding: 32px 28px 24px 28px;
+        }
+        h2 {
+            color: var(--secondary);
+            margin-top: 0;
+            font-size: 2em;
+            border-left: 6px solid var(--accent);
+            padding-left: 12px;
+            margin-bottom: 0.7em;
+        }
+        h3 {
+            color: var(--primary);
+            margin-top: 1.2em;
+            margin-bottom: 0.5em;
+            font-size: 1.2em;
+        }
+        h4 {
+            color: var(--secondary);
+            margin-top: 1em;
+            margin-bottom: 0.3em;
+        }
+        ul {
+            margin: 0;
+            padding-left: 1.3em;
+        }
+        .contact-list, .skills-list, .frameworks-list, .interests-list, .certificates-list {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-list li {
+            margin-bottom: 0.4em;
+        }
+        .links a {
+            margin-right: 1em;
+            color: var(--secondary);
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .links a:hover {
+            color: var(--accent);
+        }
+        .subsection {
+            margin-bottom: 1.2em;
+        }
+        .pub-title {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        .pub-meta {
+            font-size: 0.97em;
+            color: var(--muted);
+        }
+        .awards-list, .posters-list {
+            margin-top: 0.5em;
+        }
+        /* Back to Top Button */
+        #backToTop {
             position: fixed;
-            width: 100%;
-            bottom: 0;
+            bottom: 32px;
+            right: 32px;
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            box-shadow: 0 4px 16px rgba(45,58,75,0.18);
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+            opacity: 0.92;
+        }
+        #backToTop:hover {
+            background: var(--primary);
+            color: var(--accent);
+            transform: scale(1.08) rotate(-8deg);
+            opacity: 1;
+        }
+        #backToTop:active {
+            transform: scale(0.98);
+        }
+        /* Responsive */
+        @media (max-width: 700px) {
+            main { padding: 12px; }
+            section { padding: 18px 8px 14px 8px; }
+            nav a { padding: 12px 10px; font-size: 0.98em; }
+            #backToTop { bottom: 16px; right: 16px; width: 44px; height: 44px; font-size: 1.4em; }
+        }
+        /* Add to the <style> section, after #backToTop styles */
+        #contactBtn {
+            position: fixed;
+            bottom: 32px;
+            left: 32px;
+            background: var(--secondary);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 56px;
+            height: 56px;
+            box-shadow: 0 4px 16px rgba(45,58,75,0.18);
+            font-size: 2em;
+            cursor: pointer;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+            opacity: 0.95;
+        }
+        #contactBtn:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: scale(1.08) rotate(8deg);
+            opacity: 1;
+        }
+        #contactBtn:active {
+            transform: scale(0.98);
+        }
+        /* Responsive for contactBtn */
+        @media (max-width: 700px) {
+            #contactBtn { bottom: 16px; left: 16px; width: 44px; height: 44px; font-size: 1.4em; }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My Personal Website</h1>
+        <h1>Damian Sójka</h1>
+        <p>PhD Student | Researcher in Deep Learning, Robotics, and Machine Perception</p>
     </header>
     <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
+        <a href="#profile">Profile</a>
         <a href="#contact">Contact</a>
+        <a href="#skills">Skills</a>
+        <a href="#research">Research</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#publications">Publications</a>
     </nav>
     <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <p>This is a brief introduction about myself. I am passionate about web development and enjoy creating beautiful and functional websites.</p>
+        <section id="profile">
+            <h2>Personal Profile</h2>
+            <p>
+                I am deeply passionate about exploring the crossroads between machine perception, deep learning, and robotics.
+            </p>
         </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <p>Here are some of the projects I have worked on:</p>
-            <ul>
-                <li>Project 1: Description of project 1.</li>
-                <li>Project 2: Description of project 2.</li>
-                <li>Project 3: Description of project 3.</li>
+
+        <section id="contact">
+            <h2>Contact Information</h2>
+            <ul class="contact-list">
+                <li><strong>Email:</strong> <a href="mailto:sojka.damian9@gmail.com">sojka.damian9@gmail.com</a></li>
+                <li class="links">
+                    <strong>Links:</strong>
+                    <a href="https://github.com/dmn-sjk" target="_blank">GitHub</a>
+                    <a href="https://scholar.google.com/citations?user=oYKTXrEAAAAJ&hl=en" target="_blank">Google Scholar</a>
+                </li>
             </ul>
         </section>
-        <section id="contact">
-            <h2>Contact Me</h2>
-            <p>You can reach me at myemail@example.com or follow me on social media.</p>
+
+        <section id="skills">
+            <h2>Skills and Abilities</h2>
+            <ul class="skills-list">
+                <li><strong>Research:</strong> Skilled in devising and executing scientific experiments. Knowledge of how to write scientific papers and publish at peer-reviewed conferences.</li>
+                <li><strong>Programming:</strong> Proficiency in Python and C, with basic-level skills in C++. Expertise in embedded software development. Expert-level at PyTorch.</li>
+                <li><strong>Teamwork:</strong> History of effective collaborations within diverse international teams.</li>
+                <li><strong>Languages:</strong> Fluency in English and Polish.</li>
+            </ul>
+            <h3>Frameworks and Technologies</h3>
+            <ul class="frameworks-list">
+                <li>PyTorch</li>
+                <li>Linux</li>
+                <li>ROS</li>
+                <li>Docker</li>
+                <li>Git</li>
+                <li>TensorFlow</li>
+                <li>Qt</li>
+            </ul>
+            <h3>Certificates</h3>
+            <ul class="certificates-list">
+                <li>Microsoft Student Partners - C# Academy</li>
+                <li>Microsoft Office Specialist Excel (Core)</li>
+                <li>Cisco Networking Academy - IT Essentials</li>
+            </ul>
+        </section>
+
+        <section id="research">
+            <h2>Research Topics</h2>
+            <p>
+                Presently, my research revolves around test-time adaptation, online continual learning, self-supervised learning, and machine perception. During my master's studies, I conducted research on student race car's perception utilizing LiDAR sensors and investigated the localization of walking robots using haptic signals.
+            </p>
+            <h3>Interests</h3>
+            <ul class="interests-list">
+                <li>Artificial Intelligence</li>
+                <li>Autonomous Systems</li>
+                <li>Programming</li>
+            </ul>
+        </section>
+
+        <section id="experience">
+            <h2>Professional Experience</h2>
+            <div class="subsection">
+                <h3>IDEAS NCBR</h3>
+                <ul>
+                    <li><strong>PhD Student</strong> (Jan 2023 - Present)</li>
+                    <li><strong>Intern</strong> (Dec 2022 - Jan 2023)</li>
+                    <li>Research related to computer vision.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>AETHER BIOMEDICAL</h3>
+                <ul>
+                    <li><strong>Embedded Software Developer</strong> (Oct 2021 - Nov 2022)</li>
+                    <li><strong>Embedded Software Developer Intern</strong> (Jul 2021 - Oct 2021)</li>
+                    <li>Software development of bionic hand prosthesis and its accessories.</li>
+                    <li>Responsible for the software used to log the activity and statistics of the prosthesis usage.</li>
+                    <li>Development of Qt PC app communicating with hand prosthesis.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>FARMUTIL HS</h3>
+                <ul>
+                    <li><strong>Maintenance Department Employee</strong> (Jul 2020 - Sep 2020)</li>
+                    <li>Inspection, repair and maintenance of production lines.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>QUBIQA</h3>
+                <ul>
+                    <li><strong>Apprentice</strong> (Aug 2019 - Sep 2019)</li>
+                    <li>Assembly of control cabinets and production line machines based on technical documentation.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Education</h2>
+            <div class="subsection">
+                <h3>PhD at Poznan University of Technology</h3>
+                <ul>
+                    <li>Jan 2023 - Sep 2026</li>
+                    <li>Dissertation Topic: Computationally efficient representations of multidimensional data in deep learning</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>Scientific Internship at ENSTA Paris</h3>
+                <ul>
+                    <li>Sep 2024 - Nov 2024</li>
+                    <li>Internship Project Title: Increasing the reliability of self-supervised monocular depth estimation with online continual learning</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>Second-Cycle Studies at Poznan University of Technology</h3>
+                <ul>
+                    <li>Mar 2021 - Sep 2022</li>
+                    <li>Field of Study: Automatic Control and Robotics</li>
+                    <li>Specialisation: Robots and Autonomous Systems</li>
+                    <li>MSc degree thesis (written in English): Triplet loss in haptic localization of a walking robot</li>
+                    <li>Member of a student team building autonomous race car to compete in Formula Student events.</li>
+                    <li>Final grade: 4.88 / 5.</li>
+                    <li>Rector's Scholarship for high-achieving students.</li>
+                </ul>
+            </div>
+            <div class="subsection">
+                <h3>First-Cycle Studies at Poznan University of Technology</h3>
+                <ul>
+                    <li>Oct 2017 - Feb 2021</li>
+                    <li>Field of Study: Mechatronics</li>
+                    <li>Specialisation: Mechatronic Constructions</li>
+                    <li>BSc degree thesis: Control of logistics tractor using artificial intelligence methods</li>
+                    <li>Final grade: 4.75 / 5.</li>
+                    <li>Rector's Scholarship for high-achieving students.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Publications</h2>
+            <ul>
+                <li>
+                    <span class="pub-title">D. Sójka, M. Masana, B. Twardowski, S. Cygert. "Intranseigent Teachers Guide Better Test-Time Adaptation Students", in review for 2025 International Joint Conference on Artificial Intelligence (IJCAI).</span>
+                </li>
+                <li>
+                    <span class="pub-title">D. Sójka, S. Cygieryt, B. Twardowski, T. Trzciński. "AR-TTA: A Simple Method for Real-World Continual Test-Time Adaptation".</span>
+                    <span class="pub-meta">Visual Continual Learning Workshop, ICCV 2023.</span>
+                </li>
+                <li>
+                    <span class="pub-title">D. Sójka, M. R. Nowicki, P. S. Krzypczak, D. Skibiński. "Learning an Efficient Terrain Representation for Haptic Localization of a Legged Robot".</span>
+                    <span class="pub-meta">IEE International Conference on Robotics and Automation (ICRA), 2023.</span>
+                </li>
+            </ul>
+            <h3>Awards</h3>
+            <ul class="awards-list">
+                <li>Innovation award and third place in Continual Test Time Adaptation for Semantic Segmentation challenge organized within Visual Continual Learning workshop at ICCV 2023.</li>
+            </ul>
+            <h3>Presented Posters and Talks</h3>
+            <ul class="posters-list">
+                <li>
+                    D. Sójka, M. R. Nowicki, P. S. Krzypczak, D. Skibiński. "Learning an Efficient Terrain Representation for Haptic Localization of a Legged Robot." 2023 IEEE International Conference on Robotics and Automation (ICRA).
+                </li>
+                <li>
+                    D. Sójka, S. Cygieryt, B. Twardowski, T. Trzciński. "AR-TTA: A Simple Method for Real-World Continual Test-Time Adaptation." ML in PL 2023.
+                </li>
+                <li>
+                    D. Sójka, M. R. Nowicki, P. S. Krzypczak, D. Skibiński. "Triplet loss-based metric learning for haptic-only robot localization." 5th Polish Conference on Artificial Intelligence (PP-RAI 2024).
+                </li>
+            </ul>
         </section>
     </main>
+    <button id="backToTop" title="Back to top" aria-label="Back to top">&#8679;</button>
+    <button id="contactBtn" title="Contact info" aria-label="Contact info">&#9993;</button>
     <footer>
-        <p>&copy; 2023 My Personal Website</p>
+        <p>&copy; 2025 Damian Sójka</p>
     </footer>
+    <script>
+        // Show/hide the button based on scroll position
+        const btn = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 200) {
+                btn.style.display = 'flex';
+            } else {
+                btn.style.display = 'none';
+            }
+        });
+        // Smooth scroll to top
+        btn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        // Hide initially
+        btn.style.display = 'none';
+        // Contact button logic
+        const contactBtn = document.getElementById('contactBtn');
+        contactBtn.addEventListener('click', () => {
+            const contactSection = document.getElementById('contact');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
 </body>
 </html>
