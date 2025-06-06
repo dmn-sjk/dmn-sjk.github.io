@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/svg+xml" href="assets/moth.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Damian Sójka - Personal Website</title>
+    <title>Damian Sójka</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2d3a4b;
-            --secondary: #4f6d7a;
-            --accent: #f9aa33;
-            --bg: #f4f7fa;
-            --white: #fff;
-            --text: #222;
-            --muted: #6c7a89;
+            --primary: #f5f5f5;           /* Almost white, for headings */
+            --secondary: #a0a0a0;         /* Medium grey, for secondary text */
+            --accent: #d47202;            /* Amber/Orange, for accents */
+            --bg: #101010;                /* Very dark grey, for body background */
+            --section-bg: #1d1d1d;        /* Dark grey for sections/cards */
+            --white: #ffffff;             /* Pure white */
+            --text: #cccccc;              /* Light grey, for main paragraph text */
+            --muted: #a0a0a0;             /* Same as secondary */
+            --dark-accent-text: #101010;  /* For text on accent background */
+            --border-color: #333333;      /* Grey for borders */
         }
         html {
             scroll-behavior: smooth;
@@ -24,35 +30,40 @@
             padding: 0;
             background: var(--bg);
             color: var(--text);
+            background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+            background-size: 25px 25px;
         }
         header {
-            background: linear-gradient(90deg, var(--primary) 60%, var(--secondary) 100%);
+            background: transparent;
             color: var(--white);
             padding: 40px 0 20px 0;
             text-align: center;
-            box-shadow: 0 2px 8px rgba(45,58,75,0.08);
         }
         header h1 {
+            font-family: 'Space Mono', monospace;
             font-size: 2.7em;
             margin-bottom: 0.2em;
             letter-spacing: 2px;
+            color: var(--primary);
         }
         header p {
             font-size: 1.2em;
-            color: #e0e0e0;
+            color: var(--text);
             margin-top: 0;
         }
         nav {
             display: flex;
             justify-content: center;
-            background: var(--white);
-            box-shadow: 0 2px 8px rgba(45,58,75,0.04);
+            background: rgba(29, 29, 29, 0.8); /* var(--section-bg) with alpha */
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 10;
         }
         nav a {
-            color: var(--primary);
+            font-family: 'Space Mono', monospace;
+            color: var(--text);
             padding: 16px 22px;
             text-decoration: none;
             font-weight: 500;
@@ -61,7 +72,7 @@
             border-bottom: 2px solid transparent;
         }
         nav a:hover, nav a:focus {
-            background: var(--bg);
+            background: transparent;
             color: var(--accent);
             border-bottom: 2px solid var(--accent);
         }
@@ -71,14 +82,17 @@
             margin: 0 auto;
         }
         section {
-            background: var(--white);
-            border-radius: 14px;
-            box-shadow: 0 2px 12px rgba(45,58,75,0.06);
+            background: var(--section-bg);
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: none;
             margin-bottom: 36px;
             padding: 32px 28px 24px 28px;
+            scroll-margin-top: 64px;
         }
         h2 {
-            color: var(--secondary);
+            font-family: 'Space Mono', monospace;
+            color: var(--primary);
             margin-top: 0;
             font-size: 2em;
             border-left: 6px solid var(--accent);
@@ -86,6 +100,7 @@
             margin-bottom: 0.7em;
         }
         h3 {
+            font-family: 'Space Mono', monospace;
             color: var(--primary);
             margin-top: 1.2em;
             margin-bottom: 0.5em;
@@ -100,21 +115,21 @@
             margin: 0;
             padding-left: 1.3em;
         }
-        .contact-list, .skills-list, .frameworks-list, .interests-list, .certificates-list {
+        .skills-list, .frameworks-list, .interests-list, .certificates-list {
             list-style: none;
             padding: 0;
         }
-        .contact-list li {
-            margin-bottom: 0.4em;
-        }
         .links a {
             margin-right: 1em;
-            color: var(--secondary);
-            text-decoration: underline;
+            color: var(--accent);
+            text-decoration: none;
             font-weight: 500;
+            border-bottom: 1px dotted var(--accent);
+            transition: color 0.2s, background-color 0.2s;
         }
         .links a:hover {
-            color: var(--accent);
+            color: var(--dark-accent-text);
+            background-color: var(--accent);
         }
         .subsection {
             margin-bottom: 1.2em;
@@ -136,26 +151,27 @@
             bottom: 32px;
             right: 32px;
             background: var(--accent);
-            color: var(--primary);
+            color: var(--dark-accent-text);
             border: none;
             border-radius: 50%;
             width: 56px;
             height: 56px;
-            box-shadow: 0 4px 16px rgba(45,58,75,0.18);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.3);
             font-size: 2em;
             cursor: pointer;
             z-index: 100;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s, transform 0.2s;
-            opacity: 0.92;
+            transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
+            opacity: 0.85;
         }
         #backToTop:hover {
-            background: var(--primary);
+            background: var(--section-bg);
             color: var(--accent);
-            transform: scale(1.08) rotate(-8deg);
+            transform: scale(1.08);
             opacity: 1;
+            box-shadow: 0 0 12px var(--accent);
         }
         #backToTop:active {
             transform: scale(0.98);
@@ -163,214 +179,184 @@
         /* Responsive */
         @media (max-width: 700px) {
             main { padding: 12px; }
-            section { padding: 18px 8px 14px 8px; }
+            section { padding: 18px 14px; }
             nav a { padding: 12px 10px; font-size: 0.98em; }
             #backToTop { bottom: 16px; right: 16px; width: 44px; height: 44px; font-size: 1.4em; }
         }
-        /* Add to the <style> section, after #backToTop styles */
-        #contactBtn {
-            position: fixed;
-            bottom: 32px;
-            left: 32px;
-            background: var(--secondary);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            width: 56px;
-            height: 56px;
-            box-shadow: 0 4px 16px rgba(45,58,75,0.18);
-            font-size: 2em;
-            cursor: pointer;
-            z-index: 100;
+        .header-flex {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background 0.2s, transform 0.2s;
-            opacity: 0.95;
+            gap: 32px;
+            padding-top: 12px;
+            padding-bottom: 12px;
         }
-        #contactBtn:hover {
-            background: var(--accent);
-            color: var(--primary);
-            transform: scale(1.08) rotate(8deg);
-            opacity: 1;
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(45,58,75,0.12);
         }
-        #contactBtn:active {
-            transform: scale(0.98);
+        .header-text {
+            text-align: center;
         }
-        /* Responsive for contactBtn */
+        @media (max-width: 600px) {
+            .header-flex {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+        .header-centerpiece {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 120px;
+        }
+        .profile-photo-abs {
+            position: absolute;
+            left: 50%;
+            transform: translate(-550px, -50%);
+            top: 50%;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+            /* var(--accent); */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            z-index: 1;
+        }
+        .header-text {
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+            z-index: 2;
+        }
         @media (max-width: 700px) {
-            #contactBtn { bottom: 16px; left: 16px; width: 44px; height: 44px; font-size: 1.4em; }
+            .header-centerpiece {
+                flex-direction: column;
+                min-height: unset;
+            }
+            .profile-photo-abs {
+                position: static;
+                transform: none;
+                margin-bottom: 12px;
+                width: 160px;
+                height: 160px;
+            }
+        }
+        .header-links {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+        .header-btn-circle {
+            background: var(--section-bg);
+            color: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            font-size: 1.4em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: none;
+            transition: background 0.2s, color 0.2s, transform 0.2s, border-color 0.2s;
+            padding: 0;
+        }
+        .header-btn-circle:hover, .header-btn-circle:focus {
+            background: var(--section-bg);
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px) scale(1.08);
+        }
+        .header-email {
+            display: flex;
+            align-items: center;
+            background: var(--section-bg);
+            color: var(--text);
+            border: 1px solid var(--border-color);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1em;
+            margin-left: 10px;
+            transition: color 0.2s, border-color 0.2s;
+            letter-spacing: 0.01em;
+            height: 44px;
+            min-width: 44px;
+            padding: 0 16px 0 12px;
+            border-radius: 22px;
+            box-shadow: none;
+            box-sizing: border-box;
+        }
+        .header-email:hover, .header-email:focus {
+            color: var(--accent);
+            border-color: var(--accent);
+            text-decoration: none;
+        }
+        .header-email-icon {
+            font-size: 1.4em;
+            margin-right: 8px;
+            vertical-align: middle;
+            line-height: 1;
+        }
+        .header-email-text {
+            vertical-align: middle;
+            font-size: 1em;
+            font-weight: 700;
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Damian Sójka</h1>
-        <p>PhD Student | Researcher in Deep Learning, Robotics, and Machine Perception</p>
+        <div class="header-centerpiece">
+            <img src="assets/photo.png" alt="Damian Sójka photo" class="profile-photo-abs">
+            <div class="header-text">
+                <h1>Damian Sójka</h1>
+                <p>PhD Student | Researcher in Deep Learning, Machine Perception, and Robotics</p>
+                <div class="header-links">
+                    <a href="https://github.com/dmn-sjk" class="header-btn-circle" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                        <img src="assets/github.svg" alt="GitHub" width="24" height="24" />
+                    </a>
+                    <a href="https://scholar.google.com/citations?user=oYKTXrEAAAAJ&hl=en" class="header-btn-circle" target="_blank" rel="noopener" title="Google Scholar" aria-label="Google Scholar">
+                        <img src="assets/scholar.svg" alt="Google Scholar" width="24" height="24" />
+                    </a>
+                    <a href="assets/CV.pdf" class="header-btn-circle" target="_blank" rel="noopener" title="Download CV">
+                        <span aria-hidden="true">📄</span>
+                    </a>
+                    <a href="mailto:sojka.damian9@gmail.com" class="header-email" title="Email" aria-label="Email">
+                        <span aria-hidden="true" class="header-email-icon">&#9993;</span>
+                        <span class="header-email-text">sojka.damian9@gmail.com</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </header>
     <nav>
-        <a href="#profile">Profile</a>
-        <a href="#contact">Contact</a>
-        <a href="#skills">Skills</a>
-        <a href="#research">Research</a>
+        <!-- <a href="#profile">Profile</a> -->
+        <a href="#publications">Publications</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
-        <a href="#publications">Publications</a>
+        <a href="#skills">Skills</a>
     </nav>
     <main>
         <section id="profile">
-            <h2>Personal Profile</h2>
-            <p>
-                I am deeply passionate about exploring the crossroads between machine perception, deep learning, and robotics.
-            </p>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Information</h2>
-            <ul class="contact-list">
-                <li><strong>Email:</strong> <a href="mailto:sojka.damian9@gmail.com">sojka.damian9@gmail.com</a></li>
-                <li class="links">
-                    <strong>Links:</strong>
-                    <a href="https://github.com/dmn-sjk" target="_blank">GitHub</a>
-                    <a href="https://scholar.google.com/citations?user=oYKTXrEAAAAJ&hl=en" target="_blank">Google Scholar</a>
-                </li>
-            </ul>
-        </section>
-
-        <section id="skills">
-            <h2>Skills and Abilities</h2>
-            <ul class="skills-list">
-                <li><strong>Research:</strong> Skilled in devising and executing scientific experiments. Knowledge of how to write scientific papers and publish at peer-reviewed conferences.</li>
-                <li><strong>Programming:</strong> Proficiency in Python and C, with basic-level skills in C++. Expertise in embedded software development. Expert-level at PyTorch.</li>
-                <li><strong>Teamwork:</strong> History of effective collaborations within diverse international teams.</li>
-                <li><strong>Languages:</strong> Fluency in English and Polish.</li>
-            </ul>
-            <h3>Frameworks and Technologies</h3>
-            <ul class="frameworks-list">
-                <li>PyTorch</li>
-                <li>Linux</li>
-                <li>ROS</li>
-                <li>Docker</li>
-                <li>Git</li>
-                <li>TensorFlow</li>
-                <li>Qt</li>
-            </ul>
-            <h3>Certificates</h3>
-            <ul class="certificates-list">
-                <li>Microsoft Student Partners - C# Academy</li>
-                <li>Microsoft Office Specialist Excel (Core)</li>
-                <li>Cisco Networking Academy - IT Essentials</li>
-            </ul>
-        </section>
-
-        <section id="research">
-            <h2>Research Topics</h2>
-            <p>
-                Presently, my research revolves around test-time adaptation, online continual learning, self-supervised learning, and machine perception. During my master's studies, I conducted research on student race car's perception utilizing LiDAR sensors and investigated the localization of walking robots using haptic signals.
-            </p>
-            <h3>Interests</h3>
-            <ul class="interests-list">
-                <li>Artificial Intelligence</li>
-                <li>Autonomous Systems</li>
-                <li>Programming</li>
-            </ul>
-        </section>
-
-        <section id="experience">
-            <h2>Professional Experience</h2>
-            <div class="subsection">
-                <h3>IDEAS NCBR</h3>
-                <ul>
-                    <li><strong>PhD Student</strong> (Jan 2023 - Present)</li>
-                    <li><strong>Intern</strong> (Dec 2022 - Jan 2023)</li>
-                    <li>Research related to computer vision.</li>
-                </ul>
-            </div>
-            <div class="subsection">
-                <h3>AETHER BIOMEDICAL</h3>
-                <ul>
-                    <li><strong>Embedded Software Developer</strong> (Oct 2021 - Nov 2022)</li>
-                    <li><strong>Embedded Software Developer Intern</strong> (Jul 2021 - Oct 2021)</li>
-                    <li>Software development of bionic hand prosthesis and its accessories.</li>
-                    <li>Responsible for the software used to log the activity and statistics of the prosthesis usage.</li>
-                    <li>Development of Qt PC app communicating with hand prosthesis.</li>
-                </ul>
-            </div>
-            <div class="subsection">
-                <h3>FARMUTIL HS</h3>
-                <ul>
-                    <li><strong>Maintenance Department Employee</strong> (Jul 2020 - Sep 2020)</li>
-                    <li>Inspection, repair and maintenance of production lines.</li>
-                </ul>
-            </div>
-            <div class="subsection">
-                <h3>QUBIQA</h3>
-                <ul>
-                    <li><strong>Apprentice</strong> (Aug 2019 - Sep 2019)</li>
-                    <li>Assembly of control cabinets and production line machines based on technical documentation.</li>
-                </ul>
-            </div>
-        </section>
-
-        <section id="education">
-            <h2>Education</h2>
-            <div class="subsection">
-                <h3>PhD at Poznan University of Technology</h3>
-                <ul>
-                    <li>Jan 2023 - Sep 2026</li>
-                    <li>Dissertation Topic: Computationally efficient representations of multidimensional data in deep learning</li>
-                </ul>
-            </div>
-            <div class="subsection">
-                <h3>Scientific Internship at ENSTA Paris</h3>
-                <ul>
-                    <li>Sep 2024 - Nov 2024</li>
-                    <li>Internship Project Title: Increasing the reliability of self-supervised monocular depth estimation with online continual learning</li>
-                </ul>
-            </div>
-            <div class="subsection">
-                <h3>Second-Cycle Studies at Poznan University of Technology</h3>
-                <ul>
-                    <li>Mar 2021 - Sep 2022</li>
-                    <li>Field of Study: Automatic Control and Robotics</li>
-                    <li>Specialisation: Robots and Autonomous Systems</li>
-                    <li>MSc degree thesis (written in English): Triplet loss in haptic localization of a walking robot</li>
-                    <li>Member of a student team building autonomous race car to compete in Formula Student events.</li>
-                    <li>Final grade: 4.88 / 5.</li>
-                    <li>Rector's Scholarship for high-achieving students.</li>
-                </ul>
-            </div>
-            <div class="subsection">
-                <h3>First-Cycle Studies at Poznan University of Technology</h3>
-                <ul>
-                    <li>Oct 2017 - Feb 2021</li>
-                    <li>Field of Study: Mechatronics</li>
-                    <li>Specialisation: Mechatronic Constructions</li>
-                    <li>BSc degree thesis: Control of logistics tractor using artificial intelligence methods</li>
-                    <li>Final grade: 4.75 / 5.</li>
-                    <li>Rector's Scholarship for high-achieving students.</li>
-                </ul>
-            </div>
+            <div id="about-me-list"></div>
         </section>
 
         <section id="publications">
             <h2>Publications</h2>
-            <ul>
-                <li>
-                    <span class="pub-title">D. Sójka, M. Masana, B. Twardowski, S. Cygert. "Intranseigent Teachers Guide Better Test-Time Adaptation Students", in review for 2025 International Joint Conference on Artificial Intelligence (IJCAI).</span>
-                </li>
-                <li>
-                    <span class="pub-title">D. Sójka, S. Cygieryt, B. Twardowski, T. Trzciński. "AR-TTA: A Simple Method for Real-World Continual Test-Time Adaptation".</span>
-                    <span class="pub-meta">Visual Continual Learning Workshop, ICCV 2023.</span>
-                </li>
-                <li>
-                    <span class="pub-title">D. Sójka, M. R. Nowicki, P. S. Krzypczak, D. Skibiński. "Learning an Efficient Terrain Representation for Haptic Localization of a Legged Robot".</span>
-                    <span class="pub-meta">IEE International Conference on Robotics and Automation (ICRA), 2023.</span>
-                </li>
-            </ul>
-            <h3>Awards</h3>
+                <div id="publications-list"></div>
+            <h3>Awards and Grants</h3>
             <ul class="awards-list">
                 <li>Innovation award and third place in Continual Test Time Adaptation for Semantic Segmentation challenge organized within Visual Continual Learning workshop at ICCV 2023.</li>
+                <li>NCN PRELUDIUM grant. TODO</li>
             </ul>
             <h3>Presented Posters and Talks</h3>
             <ul class="posters-list">
@@ -385,9 +371,20 @@
                 </li>
             </ul>
         </section>
+
+        <section id="experience">
+            <div id="experience-list"></div>
+        </section>
+
+        <section id="education">
+            <div id="education-list"></div>
+        </section>
+
+        <section id="skills">
+            <div id="skills-list"></div>
+        </section>
     </main>
     <button id="backToTop" title="Back to top" aria-label="Back to top">&#8679;</button>
-    <button id="contactBtn" title="Contact info" aria-label="Contact info">&#9993;</button>
     <footer>
         <p>&copy; 2025 Damian Sójka</p>
     </footer>
@@ -407,14 +404,41 @@
         });
         // Hide initially
         btn.style.display = 'none';
-        // Contact button logic
-        const contactBtn = document.getElementById('contactBtn');
-        contactBtn.addEventListener('click', () => {
-            const contactSection = document.getElementById('contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+
+        // Load about me
+        fetch('about_me.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('about-me-list').innerHTML = data;
+          });
+        
+        // Load experience
+        fetch('professional_experience.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('experience-list').innerHTML = data;
+          });
+        
+        // Load publications
+        fetch('publications.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('publications-list').innerHTML = data;
+          });
+
+        // Load skills
+        fetch('skills.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('skills-list').innerHTML = data;
+          });
+
+        // Load education
+        fetch('education.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('education-list').innerHTML = data;
+          });
     </script>
 </body>
 </html>
