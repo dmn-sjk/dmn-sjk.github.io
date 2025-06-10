@@ -116,7 +116,7 @@
             padding-left: 1.3em;
         }
         .skills-list, .frameworks-list, .interests-list, .certificates-list {
-            list-style: none;
+            list-style: disc inside;
             padding: 0;
         }
         .links a {
@@ -134,16 +134,163 @@
         .subsection {
             margin-bottom: 1.2em;
         }
-        .pub-title {
+        .record {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2em;
+        }
+        .record:last-child {
+            margin-bottom: 0;
+        }
+        .record-dates {
+            flex: 0 0 140px;
+            text-align: right;
+            color: var(--muted);
+            font-size: 0.9em;
+            padding-top: 0.3em;
+        }
+        .record-dates p {
+            margin: 0 0 0.5em 0;
+        }
+        .record-dates p:last-child {
+            margin-bottom: 0;
+        }
+        .record-details {
+            flex: 1;
+            padding-left: 1.5rem;
+            border-left: 1px solid var(--border-color);
+        }
+        .record-details h3 {
+            margin-top: 0;
+        }
+        .job-titles {
+            margin: 0.6em 0 0.8em;
+        }
+        .job-titles p {
             font-weight: bold;
             color: var(--primary);
+            font-size: 1.1em;
+            margin: 0;
         }
-        .pub-meta {
-            font-size: 0.97em;
+        .job-titles p + p {
+            margin-top: 0.2em;
+        }
+        .publication {
+            display: flex;
+            margin-bottom: 2.5rem;
+            align-items: flex-start;
+        }
+        .publication:last-child {
+            margin-bottom: 0;
+        }
+        .publication-image {
+            flex: 0 0 180px;
+            margin-right: 1.5rem;
+        }
+        .publication-image img {
+            width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--white);
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+        .publication-image img:hover {
+            transform: scale(1.03);
+        }
+        .publication-details {
+            flex: 1;
+        }
+        .publication-title {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        .publication-authors {
+            margin-bottom: 0.25rem;
+            color: var(--text);
+            font-style: italic;
+        }
+        .publication-venue {
+            margin-bottom: 1rem;
             color: var(--muted);
+        }
+        .publication-additional-venue {
+            margin-top: -0.75rem;
+            margin-bottom: 1rem;
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+        .publication-links button,
+        .publication-links a {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text);
+            background-color: transparent;
+            cursor: pointer;
+            margin-right: 10px;
+            font-family: inherit;
+            font-size: 0.9rem;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+        .publication-links button:hover,
+        .publication-links a:hover {
+            background-color: var(--accent);
+            color: var(--dark-accent-text);
+            border-color: var(--accent);
+        }
+        .publication-abstract {
+            margin-top: 1rem;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--bg);
+            font-size: 0.95em;
+            line-height: 1.6;
         }
         .awards-list, .posters-list {
             margin-top: 0.5em;
+        }
+        /* Image Modal (Lightbox) with Animation */
+        .image-modal {
+            display: flex; /* Use flex for centering */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            /* Animation properties */
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .image-modal.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .image-modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 6px;
+            background-color: var(--white);
+            /* Animation properties */
+            transform: scale(0.8);
+            transition: transform 0.3s ease-in-out;
+        }
+        .image-modal.show .image-modal-content {
+            transform: scale(1);
         }
         /* Back to Top Button */
         #backToTop {
@@ -182,6 +329,21 @@
             section { padding: 18px 14px; }
             nav a { padding: 12px 10px; font-size: 0.98em; }
             #backToTop { bottom: 16px; right: 16px; width: 44px; height: 44px; font-size: 1.4em; }
+
+            .record {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            .record-dates {
+                text-align: left;
+                padding-top: 0;
+                font-weight: 500;
+                color: var(--text);
+            }
+            .record-details {
+                border-left: none;
+                padding-left: 0;
+            }
         }
         .header-flex {
             display: flex;
@@ -341,6 +503,7 @@
     <nav>
         <!-- <a href="#profile">Profile</a> -->
         <a href="#publications">Publications</a>
+        <a href="#awards-and-grants">Awards and Grants</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#skills">Skills</a>
@@ -351,25 +514,11 @@
         </section>
 
         <section id="publications">
-            <h2>Publications</h2>
-                <div id="publications-list"></div>
-            <h3>Awards and Grants</h3>
-            <ul class="awards-list">
-                <li>Innovation award and third place in Continual Test Time Adaptation for Semantic Segmentation challenge organized within Visual Continual Learning workshop at ICCV 2023.</li>
-                <li>NCN PRELUDIUM grant. TODO</li>
-            </ul>
-            <h3>Presented Posters and Talks</h3>
-            <ul class="posters-list">
-                <li>
-                    D. Sójka, M. R. Nowicki, P. S. Krzypczak, D. Skibiński. "Learning an Efficient Terrain Representation for Haptic Localization of a Legged Robot." 2023 IEEE International Conference on Robotics and Automation (ICRA).
-                </li>
-                <li>
-                    D. Sójka, S. Cygieryt, B. Twardowski, T. Trzciński. "AR-TTA: A Simple Method for Real-World Continual Test-Time Adaptation." ML in PL 2023.
-                </li>
-                <li>
-                    D. Sójka, M. R. Nowicki, P. S. Krzypczak, D. Skibiński. "Triplet loss-based metric learning for haptic-only robot localization." 5th Polish Conference on Artificial Intelligence (PP-RAI 2024).
-                </li>
-            </ul>
+            <div id="publications-list"></div>
+        </section>
+        
+        <section id="awards-and-grants">
+            <div id="awards-and-grants-list"></div>
         </section>
 
         <section id="experience">
@@ -384,6 +533,9 @@
             <div id="skills-list"></div>
         </section>
     </main>
+    <div id="imageModal" class="image-modal">
+        <img class="image-modal-content" id="modalImage">
+    </div>
     <button id="backToTop" title="Back to top" aria-label="Back to top">&#8679;</button>
     <footer>
         <p>&copy; 2025 Damian Sójka</p>
@@ -405,6 +557,41 @@
         // Hide initially
         btn.style.display = 'none';
 
+        // Event delegation for dynamically loaded content
+        document.querySelector('main').addEventListener('click', function(event) {
+            // Magnify image on click
+            if (event.target.tagName === 'IMG' && event.target.closest('.publication-image')) {
+                const modal = document.getElementById('imageModal');
+                const modalImg = document.getElementById('modalImage');
+                modalImg.src = event.target.src;
+                modal.classList.add('show');
+                return; // Stop further processing
+            }
+
+            // Toggle abstract visibility
+            if (event.target.classList.contains('abstract-button')) {
+                const button = event.target;
+                const abstractDiv = button.closest('.publication-details').querySelector('.publication-abstract');
+                if (abstractDiv) {
+                    const isHidden = abstractDiv.style.display === 'none' || abstractDiv.style.display === '';
+                    abstractDiv.style.display = isHidden ? 'block' : 'none';
+                    button.textContent = isHidden ? 'Hide Abstract' : 'Abstract';
+                }
+            }
+        });
+
+        // Function to close the modal
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('show');
+        }
+
+        // Close the modal when it's clicked
+        document.getElementById('imageModal').addEventListener('click', closeModal);
+
+        // Close the modal on scroll
+        window.addEventListener('scroll', closeModal, { passive: true });
+
         // Load about me
         fetch('about_me.html')
           .then(response => response.text())
@@ -419,6 +606,13 @@
               document.getElementById('experience-list').innerHTML = data;
           });
         
+        // Load awards and grants
+        fetch('awards_and_grants.html')
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById('awards-and-grants-list').innerHTML = data;
+          });
+
         // Load publications
         fetch('publications.html')
           .then(response => response.text())

@@ -1,13 +1,117 @@
-<ul>
-    <li>
-        <span class="pub-title">D. Sójka, M. Masana, B. Twardowski, S. Cygert. "Intranseigent Teachers Guide Better Test-Time Adaptation Students", in review for 2025 International Joint Conference on Artificial Intelligence (IJCAI).</span>
-    </li>
-    <li>
-        <span class="pub-title">D. Sójka, S. Cygieryt, B. Twardowski, T. Trzciński. "AR-TTA: A Simple Method for Real-World Continual Test-Time Adaptation".</span>
-        <span class="pub-meta">Visual Continual Learning Workshop, ICCV 2023.</span>
-    </li>
-    <li>
-        <span class="pub-title">D. Sójka, M. R. Nowicki, P. S. Krzypczak, D. Skibiński. "Learning an Efficient Terrain Representation for Haptic Localization of a Legged Robot".</span>
-        <span class="pub-meta">IEE International Conference on Robotics and Automation (ICRA), 2023.</span>
-    </li>
-</ul>
+<h2>Publications</h2>
+    <div class="publication">
+        <div class="publication-image">
+            <img src="assets/it.png" alt="Publication figure">
+        </div>
+        <div class="publication-details">
+            <div class="publication-title">Intranseigent Teachers Guide Better Test-Time Adaptation Students</div>
+            <div class="publication-authors"><u>D. Sójka</u>, M. Masana, B. Twardowski, S. Cygert</div>
+            <div class="publication-venue">to-be-published</div>
+            <div class="publication-additional-venue">Additionally presented at: 
+                <li>European Conference on Computer Vision (ECCV), Out-Of-Distribution Generalization in Computer Vision Workshop, 2024.</li>
+            </div>
+            <div class="publication-links">
+                <button class="abstract-button">Abstract</button>
+                <a href="https://openreview.net/pdf?id=Chq4OQ3p18" class="paper-link-button" target="_blank">Paper</a>
+            </div>
+            <div class="publication-abstract" style="display: none;">
+                <p>Test-Time Adaptation (TTA) has recently emerged as a promising strategy that allows the adaptation of pre-trained models to changing data distributions at deployment time, without access to any labels. To address the error accumulation problem, various approaches have used the teacher-student framework. In this work, we challenge the common strategy of setting the teacher weights to be an exponential moving average of the student by showing that error accumulation still occurs, but only on longer sequences compared to those commonly utilized. We analyze the stability-plasticity trade-off within the teacher-student framework and propose to use an intransigent teacher instead. We show that not changing any of the weights of the teacher model within existing TTA methods allows them to significantly improve their performance on multiple datasets with longer scenarios and smaller batch sizes. Finally, we show that the proposed changes are applicable to different architectures and are more robust to changes in hyper-parameters.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="publication">
+        <div class="publication-image">
+            <img src="assets/realistic.png" alt="Publication figure">
+        </div>
+        <div class="publication-details">
+            <div class="publication-title">Realistic Evaluation of Test-Time Adaptation Algorithms: Unsupervised Hyperparameter Selection</div>
+            <div class="publication-authors">S. Cygiert, <u>D. Sójka</u>, T. Trzciński, B. Twardowski</div>
+            <div class="publication-venue">to-be-published</div>
+            <div class="publication-links">
+                <button class="abstract-button">Abstract</button>
+                <a href="https://arxiv.org/pdf/2407.14231" class="paper-link-button" target="_blank">Paper</a>
+            </div>
+            <div class="publication-abstract" style="display: none;">
+                <p>Test-Time Adaptation (TTA) has recently emerged as a promising strategy for tackling the problem of machine learning model robustness under distribution shifts by adapting the model during inference without access to any labels. Because of task difficulty, hyperparameters strongly influence the effectiveness of adaptation. However, the literature has provided little exploration into optimal hyperparameter selection. In this work, we tackle this problem by evaluating existing TTA methods using surrogate-based hp-selection strategies (which do not assume access to the test labels) to obtain a more realistic evaluation of their performance. We show that some of the recent state-of-the-art methods exhibit inferior performance compared to the previous algorithms when using our more realistic evaluation setup. Further, we show that forgetting is still a problem in TTA as the only method that is robust to hp-selection resets the model to the initial state at every step. We analyze different types of unsupervised selection strategies, and while they work reasonably well in most scenarios, the only strategies that work consistently well use some kind of supervision (either by a limited number of annotated test samples or by using pretraining data). Our findings underscore the need for further research with more rigorous benchmarking by explicitly stating model selection strategies, to facilitate which we open-source our code.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="publication">
+        <div class="publication-image">
+            <img src="assets/ar_tta.png" alt="Publication figure">
+        </div>
+        <div class="publication-details">
+            <div class="publication-title">AR-TTA: A Simple Method for Real-World Continual Test-Time Adaptation</div>
+            <div class="publication-authors"><u>D. Sójka</u>, B. Twardowski, T. Trzciński, S. Cygiert</div>
+            <div class="publication-venue">British Machine Vision Conference (BMVC), 2024.</div>
+            <div class="publication-additional-venue">Additionally presented at: 
+                <li>ML in PL, 2023.</li>
+                <li>International Computer Vision Summer School (ICVSS), 2024.</li>
+            </div>
+            <div class="publication-links">
+                <button class="abstract-button">Abstract</button>
+                <a href="https://arxiv.org/pdf/2309.10109" class="paper-link-button" target="_blank">Paper</a>
+            </div>
+            <div class="publication-abstract" style="display: none;">
+                <p> Test-time adaptation is a promising research direction that allows the source model to adapt itself to changes in data distribution without any supervision. Yet, current methods are usually evaluated on benchmarks that are only a simplification of real-world scenarios. Hence, we propose to validate test-time adaptation methods using the recently introduced datasets for autonomous driving, namely CLAD-C and SHIFT. We observe that current test-time adaptation methods struggle to effectively handle varying degrees of domain shift, often resulting in degraded performance that falls below that of the source model. We noticed that the root of the problem lies in the inability to preserve the knowledge of the source model and adapt to dynamically changing, temporally correlated data streams. Therefore, we enhance the well-established self-training framework by incorporating a small memory buffer to increase model stability and at the same time perform dynamic adaptation based on the intensity of domain shift. The proposed method, named AR-TTA, outperforms existing approaches on both synthetic and more real-world bench- marks and shows robustness across a variety of TTA scenarios.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="publication">
+        <div class="publication-image">
+            <img src="assets/challenge.png" alt="Publication figure">
+        </div>
+        <div class="publication-details">
+            <div class="publication-title">Technical Report for ICCV 2023 Visual Continual Learning Challenge:
+                Continuous Test-time Adaptation for Semantic Segmentation.</div>
+            <div class="publication-authors"><u>D. Sójka</u>, Y. Liu, D. Goswani, S. Cygert, B. Twardowski, J. Van De Weijer</div>
+            <!-- <div class="publication-venue"></div> -->
+            <div class="publication-links">
+                <!-- <button class="abstract-button">Abstract</button> -->
+                <a href="https://arxiv.org/pdf/2310.13533" class="paper-link-button" target="_blank">Paper</a>
+            </div>
+            <!-- <div class="publication-abstract" style="display: none;">
+                <p></p>
+            </div> -->
+        </div>
+    </div>
+
+    <div class="publication">
+        <div class="publication-image">
+            <img src="assets/pp_rai.png" alt="Publication figure">
+        </div>
+        <div class="publication-details">
+            <div class="publication-title">Triplet Loss-Based Metric Learning for Haptic-Only Robot Localization</div>
+            <div class="publication-authors"><u>D. Sójka</u>, M. R. Nowicki, P. Skrzypczyński</div>
+            <div class="publication-venue">Polish Conference on Artificial Intelligence (PP-RAI), 2024.</div>
+            <div class="publication-links">
+                <button class="abstract-button">Abstract</button>
+                <a href="https://pages.mini.pw.edu.pl/~estatic/pliki/PP-RAI_2024_proceedings.pdf#page=357" class="paper-link-button" target="_blank">Paper</a>
+            </div>
+            <div class="publication-abstract" style="display: none;">
+                <p>This study investigates an approach to haptic localization for legged robots, employing triplet loss within a transformer-based neural network. Through experimentation, we evaluate diverse triplet loss variations and their impact on localization accuracy, shedding light on latent space structures. Our findings highlight the superiority of TL-BA triplet loss for haptic-only robot localization, surpassing alternative loss methods. This research not only enhances understanding of machine learning optimization for practical robotics but also identifies effective strategies for haptic localization implementation. Our insights pave the way for more refined methodologies in the development of robotic systems reliant on sparse sensory data.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="publication">
+        <div class="publication-image">
+            <img src="assets/icra.png" alt="Publication figure">
+        </div>
+        <div class="publication-details">
+            <div class="publication-title">Learning an Efficient Terrain Representation for Haptic Localization of a Legged Robot</div>
+            <div class="publication-authors"><u>D. Sójka</u>, M. R. Nowicki, P. Skrzypczyński</div>
+            <div class="publication-venue">IEEE International Conference on Robotics and Automation (ICRA), 2023.</div>
+            <div class="publication-links">
+                <button class="abstract-button">Abstract</button>
+                <a href="https://arxiv.org/pdf/2209.15135" class="paper-link-button" target="_blank">Paper</a>
+            </div>
+            <div class="publication-abstract" style="display: none;">
+                <p>Although haptic sensing has recently been used for legged robot localization in extreme environments where a camera or LiDAR might fail, the problem of efficiently representing the haptic signatures in a learned prior map is still open. This paper introduces an approach to terrain representation for haptic localization inspired by recent trends in machine learning. It combines this approach with the proven Monte Carlo algorithm to obtain an accurate, computation-efficient, and practical method for localizing legged robots under adversarial environmental conditions. We apply the triplet loss concept to learn highly descriptive embeddings in a transformer-based neural network. As the training haptic data are not labeled, the positive and negative examples are discriminated by their geometric locations discovered while training. We demonstrate experimentally that the proposed approach outperforms by a large margin the previous solutions to haptic localization of legged robots concerning the accuracy, inference time, and the amount of data stored in the map. As far as we know, this is the first approach that completely removes the need to use a dense terrain map for accurate haptic localization, thus paving the way to practical applications.</p>
+            </div>
+        </div>
+    </div>
